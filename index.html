@@ -1,0 +1,995 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#101018">
+<title>Эмерландия — Аймир Великий</title>
+
+<style>
+:root {
+  --bg: #101018;
+  --card: #1b1b27;
+  --gold: #e6c477;
+  --light: #fff0c8;
+  --text: #f4f1eb;
+  --muted: #b7b3c0;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: Georgia, "Times New Roman", serif;
+  line-height: 1.7;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button, input, textarea {
+  font: inherit;
+}
+
+.container {
+  width: min(1100px, 90%);
+  margin: auto;
+}
+
+header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: rgba(16, 16, 24, .95);
+  border-bottom: 1px solid #39313a;
+  backdrop-filter: blur(12px);
+}
+
+nav {
+  min-height: 72px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 15px;
+}
+
+.logo {
+  color: var(--gold);
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 18px;
+}
+
+.links a {
+  font-size: 14px;
+  color: var(--muted);
+}
+
+.links a:hover {
+  color: var(--gold);
+}
+
+.hero {
+  min-height: 590px;
+  padding: 90px 0;
+  display: grid;
+  place-items: center;
+  text-align: center;
+  background:
+    radial-gradient(ellipse at 50% 20%, #554125 0%, transparent 48%),
+    linear-gradient(180deg, #1c1a25, #101018);
+  position: relative;
+  overflow: hidden;
+}
+
+.hero::before {
+  content: "✦";
+  position: absolute;
+  font-size: 350px;
+  color: rgba(230,196,119,.04);
+}
+
+.hero-content {
+  position: relative;
+}
+
+.crown {
+  font-size: 70px;
+  line-height: 1.3;
+}
+
+.eyebrow {
+  color: var(--gold);
+  text-transform: uppercase;
+  letter-spacing: 4px;
+  font-size: 12px;
+  margin: 15px 0;
+}
+
+h1 {
+  font-size: clamp(42px, 8vw, 82px);
+  line-height: 1.1;
+  color: var(--light);
+  font-weight: normal;
+}
+
+.hero p {
+  max-width: 650px;
+  margin: 22px auto 30px;
+  color: var(--muted);
+  font-size: 17px;
+}
+
+.btn {
+  display: inline-block;
+  padding: 11px 22px;
+  border: 1px solid var(--gold);
+  color: var(--gold);
+  background: transparent;
+  cursor: pointer;
+  transition: .2s;
+}
+
+.btn:hover {
+  background: var(--gold);
+  color: #17141a;
+}
+
+.btn.primary {
+  background: var(--gold);
+  color: #17141a;
+}
+
+section {
+  padding: 80px 0;
+  scroll-margin-top: 75px;
+}
+
+.heading {
+  text-align: center;
+  margin-bottom: 42px;
+}
+
+h2 {
+  font-size: clamp(29px, 5vw, 43px);
+  font-weight: normal;
+  color: var(--light);
+  line-height: 1.25;
+}
+
+.heading p {
+  max-width: 650px;
+  margin: 12px auto 0;
+  color: var(--muted);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 22px;
+}
+
+.card {
+  background: var(--card);
+  border: 1px solid #34303b;
+  padding: 28px;
+  border-radius: 5px;
+}
+
+.card h3 {
+  color: var(--gold);
+  font-size: 22px;
+  font-weight: normal;
+  margin-bottom: 12px;
+}
+
+.card p {
+  color: var(--muted);
+}
+
+.symbol {
+  font-size: 35px;
+  margin-bottom: 12px;
+}
+
+.stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 15px;
+  margin-top: 25px;
+}
+
+.stat {
+  text-align: center;
+  border: 1px solid #39313a;
+  padding: 22px 10px;
+}
+
+.stat strong {
+  display: block;
+  font-size: 22px;
+  color: var(--gold);
+  font-weight: normal;
+}
+
+.stat span {
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.quote {
+  border-left: 3px solid var(--gold);
+  padding: 20px 25px;
+  margin-top: 25px;
+  background: #191821;
+  color: var(--light);
+  font-size: 19px;
+  font-style: italic;
+}
+
+.timeline {
+  border-left: 1px solid #6e5b39;
+  margin-left: 10px;
+  padding-left: 28px;
+}
+
+.event {
+  position: relative;
+  margin-bottom: 30px;
+}
+
+.event::before {
+  content: "";
+  position: absolute;
+  left: -34px;
+  top: 10px;
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  background: var(--gold);
+}
+
+.event h3 {
+  color: var(--gold);
+  font-weight: normal;
+  font-size: 21px;
+}
+
+.event p {
+  color: var(--muted);
+}
+
+.gallery-controls {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-bottom: 25px;
+}
+
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 15px;
+}
+
+.photo {
+  position: relative;
+  min-height: 180px;
+  background: var(--card);
+  border: 1px solid #39313a;
+  overflow: hidden;
+}
+
+.photo img {
+  width: 100%;
+  height: 230px;
+  object-fit: cover;
+  display: block;
+}
+
+.photo figcaption {
+  padding: 10px;
+  color: var(--muted);
+  font-size: 14px;
+  overflow-wrap: anywhere;
+}
+
+.photo button {
+  margin: 0 10px 10px;
+}
+
+.empty {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 40px 15px;
+  border: 1px dashed #514638;
+  color: var(--muted);
+}
+
+form {
+  max-width: 650px;
+  margin: auto;
+}
+
+label {
+  display: block;
+  color: var(--gold);
+  margin: 15px 0 5px;
+}
+
+input, textarea {
+  width: 100%;
+  background: #191923;
+  border: 1px solid #39313a;
+  color: white;
+  padding: 12px;
+  outline: none;
+}
+
+input:focus, textarea:focus {
+  border-color: var(--gold);
+}
+
+textarea {
+  min-height: 120px;
+  resize: vertical;
+}
+
+.form-note {
+  color: var(--muted);
+  font-size: 13px;
+  margin: 12px 0;
+}
+
+footer {
+  padding: 30px 0;
+  border-top: 1px solid #39313a;
+  text-align: center;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+footer strong {
+  color: var(--gold);
+}
+
+@media (max-width: 700px) {
+  nav {
+    padding: 12px 0;
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .links {
+    gap: 10px 15px;
+  }
+
+  .grid {
+    grid-template-columns: 1fr;
+  }
+
+  .gallery {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .photo img {
+    height: 160px;
+  }
+
+  .stats {
+    grid-template-columns: 1fr;
+  }
+
+  section {
+    padding: 60px 0;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <div class="container">
+    <nav>
+      <a class="logo" href="#home">♛ ЭМЕРЛАНДИЯ</a>
+      <div class="links">
+        <a href="#country">Страна</a>
+        <a href="#king">Король</a>
+        <a href="#character">Характер</a>
+        <a href="#history">Хроника</a>
+        <a href="#gallery">Галерея</a>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+<section class="hero" id="home">
+  <div class="hero-content container">
+    <div class="crown">♛</div>
+    <div class="eyebrow">Королевская хроника</div>
+    <h1>Аймир Великий</h1>
+    <p>
+      Летопись короля, история государства и наследие правителя
+      Королевства Эмерландия.
+    </p>
+    <a class="btn primary" href="#king">Биография короля</a>
+    <a class="btn" href="#country">Об Эмерландии</a>
+  </div>
+</section>
+
+<section id="country">
+  <div class="container">
+    <div class="heading">
+      <div class="eyebrow">Наше государство</div>
+      <h2>Королевство Эмерландия</h2>
+      <p>
+        Эмерландия — вымышленное королевство со своей историей,
+        традициями, символами и легендами.
+      </p>
+    </div>
+
+    <div class="grid">
+      <article class="card">
+        <div class="symbol">🏰</div>
+        <h3>Государство</h3>
+        <p>
+          Эмерландия представляет собой королевство, в котором
+          корона символизирует единство страны, а история правителей
+          занимает центральное место в национальной культуре.
+        </p>
+      </article>
+
+      <article class="card">
+        <div class="symbol">👑</div>
+        <h3>Монархия</h3>
+        <p>
+          Во главе государства находится король Аймир Великий.
+          Его образ связан с властью, ответственностью и стремлением
+          оставить заметный след в истории королевства.
+        </p>
+      </article>
+
+      <article class="card">
+        <div class="symbol">🛡️</div>
+        <h3>Государственные символы</h3>
+        <p>
+          Корона олицетворяет верховную власть, щит — защиту
+          государства, а золотой цвет — величие, достоинство
+          и преемственность поколений.
+        </p>
+      </article>
+
+      <article class="card">
+        <div class="symbol">📜</div>
+        <h3>Традиции</h3>
+        <p>
+          Королевские церемонии, летописи и памятные даты помогают
+          сохранять историю Эмерландии и передавать её следующим
+          поколениям.
+        </p>
+      </article>
+    </div>
+
+    <div class="stats">
+      <div class="stat">
+        <strong>Эмерландия</strong>
+        <span>Название государства</span>
+      </div>
+      <div class="stat">
+        <strong>Аймир Великий</strong>
+        <span>Король</span>
+      </div>
+      <div class="stat">
+        <strong>Королевство</strong>
+        <span>Форма правления в легенде</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="king">
+  <div class="container">
+    <div class="heading">
+      <div class="eyebrow">Жизнеописание монарха</div>
+      <h2>Биография Аймира Великого</h2>
+      <p>История короля Эмерландии.</p>
+    </div>
+
+    <div class="grid">
+      <article class="card">
+        <h3>Происхождение</h3>
+        <p>
+          Аймир Великий вошёл в историю Эмерландии как центральная
+          фигура королевской летописи. Его имя стало символом эпохи,
+          которую историки королевства связывают с укреплением
+          монархии и формированием собственного наследия.
+        </p>
+      </article>
+
+      <article class="card">
+        <h3>Восхождение к власти</h3>
+        <p>
+          Получив королевский титул в рамках истории Эмерландии,
+          Аймир принял на себя ответственность за судьбу государства.
+          Корона стала для него не только знаком власти, но и
+          напоминанием об обязанностях перед королевством.
+        </p>
+      </article>
+
+      <article class="card">
+        <h3>Правление</h3>
+        <p>
+          В королевской хронике Аймир Великий представлен как
+          правитель, стремящийся укреплять государственные традиции,
+          поддерживать порядок и сохранять единство Эмерландии.
+          Подробности его правления можно дополнить реальными
+          событиями вашей истории.
+        </p>
+      </article>
+
+      <article class="card">
+        <h3>Наследие</h3>
+        <p>
+          Образ Аймира Великого занимает почётное место в летописи
+          государства. Его имя связывают с королевским достоинством,
+          решительностью и стремлением оставить после себя
+          наследие, которое будут помнить будущие поколения.
+        </p>
+      </article>
+    </div>
+
+    <div class="quote">
+      «Величие правителя измеряется не только его властью,
+      но и тем, что он оставляет после себя».
+      <br><small>— Из королевской хроники Эмерландии</small>
+    </div>
+  </div>
+</section>
+
+<section id="character">
+  <div class="container">
+    <div class="heading">
+      <div class="eyebrow">Портрет монарха</div>
+      <h2>Характер Аймира Великого</h2>
+      <p>
+        Художественная характеристика короля в стиле исторической
+        летописи.
+      </p>
+    </div>
+
+    <div class="grid">
+      <article class="card">
+        <div class="symbol">⚖️</div>
+        <h3>Справедливость</h3>
+        <p>
+          Король стремится оценивать поступки по их последствиям
+          и считает справедливость важной основой стабильности
+          государства.
+        </p>
+      </article>
+
+      <article class="card">
+        <div class="symbol">🦁</div>
+        <h3>Смелость</h3>
+        <p>
+          Аймир не уклоняется от сложных решений и готов брать
+          на себя ответственность в непростые моменты.
+        </p>
+      </article>
+
+      <article class="card">
+        <div class="symbol">🧠</div>
+        <h3>Стратегическое мышление</h3>
+        <p>
+          Он предпочитает оценивать ситуацию целиком, обдумывать
+          последствия и планировать действия заранее.
+        </p>
+      </article>
+
+      <article class="card">
+        <div class="symbol">👑</div>
+        <h3>Властность</h3>
+        <p>
+          Король обладает сильным характером, ценит дисциплину
+          и стремится сохранять авторитет правителя.
+        </p>
+      </article>
+
+      <article class="card">
+        <div class="symbol">🤝</div>
+        <h3>Верность своим</h3>
+        <p>
+          В рамках легенды Аймир уважает преданность, ценит
+          надёжных союзников и помнит о тех, кто поддерживал
+          королевство.
+        </p>
+      </article>
+
+      <article class="card">
+        <div class="symbol">🔥</div>
+        <h3>Амбициозность</h3>
+        <p>
+          Его отличает стремление развивать государство,
+          добиваться значимых целей и укреплять своё историческое
+          наследие.
+        </p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section id="history">
+  <div class="container">
+    <div class="heading">
+      <div class="eyebrow">Летопись</div>
+      <h2>Хроника Эмерландии</h2>
+      <p>
+        Основные страницы истории королевства. Добавляй сюда
+        собственные события и памятные даты.
+      </p>
+    </div>
+
+    <div class="timeline">
+      <article class="event">
+        <h3>Основание королевства</h3>
+        <p>
+          Начало истории Эмерландии. Формирование государства,
+          его традиций и символики.
+        </p>
+      </article>
+
+      <article class="event">
+        <h3>Коронация Аймира</h3>
+        <p>
+          Аймир становится королём и принимает ответственность
+          за будущее своего государства.
+        </p>
+      </article>
+
+      <article class="event">
+        <h3>Эпоха Аймира Великого</h3>
+        <p>
+          Период, посвящённый личности короля, его решениям
+          и наследию в истории Эмерландии.
+        </p>
+      </article>
+
+      <article class="event">
+        <h3>Новая глава истории</h3>
+        <p>
+          Здесь можно записывать новые события, достижения,
+          праздники и важные даты королевства.
+        </p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section id="gallery">
+  <div class="container">
+    <div class="heading">
+      <div class="eyebrow">Архив королевства</div>
+      <h2>Королевская галерея</h2>
+      <p>
+        Добавляй фотографии Аймира, друзей, памятников,
+        герба и других важных мест Эмерландии.
+      </p>
+    </div>
+
+    <div class="gallery-controls">
+      <label class="btn primary" for="photoInput">
+        ＋ Добавить фотографии
+      </label>
+      <input
+        type="file"
+        id="photoInput"
+        accept="image/*"
+        multiple
+        hidden
+      >
+      <button class="btn" id="clearGallery" type="button">
+        Очистить галерею
+      </button>
+    </div>
+
+    <p class="form-note" style="text-align:center; margin-bottom:22px">
+      Фотографии сохраняются в памяти этого браузера на данном устройстве.
+      Для постоянного хранения используй резервные копии.
+    </p>
+
+    <div class="gallery" id="galleryGrid">
+      <div class="empty" id="emptyGallery">
+        📷<br>
+        Галерея пока пуста.<br>
+        Нажми «Добавить фотографии», чтобы загрузить свои снимки.
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="add-event">
+  <div class="container">
+    <div class="heading">
+      <div class="eyebrow">Королевский архив</div>
+      <h2>Добавить запись в хронику</h2>
+      <p>
+        Напиши о новом событии, чтобы оформить его как часть
+        истории Эмерландии.
+      </p>
+    </div>
+
+    <form id="eventForm">
+      <label for="eventTitle">Название события</label>
+      <input
+        id="eventTitle"
+        type="text"
+        maxlength="100"
+        placeholder="Например, Королевский праздник"
+        required
+      >
+
+      <label for="eventDate">Дата или эпоха</label>
+      <input
+        id="eventDate"
+        type="text"
+        maxlength="60"
+        placeholder="Например, 2026 год"
+      >
+
+      <label for="eventDescription">Описание</label>
+      <textarea
+        id="eventDescription"
+        maxlength="1500"
+        placeholder="Что произошло?"
+        required
+      ></textarea>
+
+      <p class="form-note">
+        Записи сохраняются в этом браузере на данном устройстве.
+      </p>
+
+      <button class="btn primary" type="submit">
+        Добавить в хронику
+      </button>
+    </form>
+
+    <div class="timeline" id="customTimeline" style="margin-top:35px"></div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="container">
+    <strong>♛ Королевство Эмерландия</strong>
+    <p>Посвящается истории Аймира Великого.</p>
+    <p>© <span id="year"></span> Королевская хроника</p>
+    <p>Вымышленное государство и художественная биография.</p>
+  </div>
+</footer>
+
+<script>
+const $ = (selector) => document.querySelector(selector);
+
+$("#year").textContent = new Date().getFullYear();
+
+/* Фотогалерея */
+const photoInput = $("#photoInput");
+const galleryGrid = $("#galleryGrid");
+
+let photos = [];
+
+try {
+  photos = JSON.parse(localStorage.getItem("emerlandiaPhotos") || "[]");
+  if (!Array.isArray(photos)) photos = [];
+} catch {
+  photos = [];
+}
+
+function savePhotos() {
+  try {
+    localStorage.setItem("emerlandiaPhotos", JSON.stringify(photos));
+    return true;
+  } catch {
+    alert(
+      "Не удалось сохранить все фотографии. Возможно, закончилась память браузера. Попробуй загрузить меньше фотографий или уменьшить их размер."
+    );
+    return false;
+  }
+}
+
+function renderGallery() {
+  galleryGrid.replaceChildren();
+
+  if (photos.length === 0) {
+    const empty = document.createElement("div");
+    empty.className = "empty";
+    empty.innerHTML =
+      "📷<br>Галерея пока пуста.<br>Нажми «Добавить фотографии», чтобы загрузить свои снимки.";
+    galleryGrid.appendChild(empty);
+    return;
+  }
+
+  photos.forEach((photo, index) => {
+    const figure = document.createElement("figure");
+    figure.className = "photo";
+
+    const img = document.createElement("img");
+    img.src = photo.data;
+    img.alt = photo.name;
+    img.loading = "lazy";
+
+    const caption = document.createElement("figcaption");
+    caption.textContent = photo.name;
+
+    const remove = document.createElement("button");
+    remove.className = "btn";
+    remove.type = "button";
+    remove.textContent = "Удалить";
+
+    remove.addEventListener("click", () => {
+      photos.splice(index, 1);
+      savePhotos();
+      renderGallery();
+    });
+
+    figure.append(img, caption, remove);
+    galleryGrid.appendChild(figure);
+  });
+}
+
+photoInput.addEventListener("change", async (event) => {
+  const files = Array.from(event.target.files || []);
+  photoInput.value = "";
+
+  for (const file of files) {
+    if (!file.type.startsWith("image/")) continue;
+
+    if (file.size > 8 * 1024 * 1024) {
+      alert(
+        file.name + " больше 8 МБ. Выбери фотографию меньшего размера."
+      );
+      continue;
+    }
+
+    try {
+      const data = await new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.onload = () => resolve(reader.result);
+        reader.onerror = reject;
+        reader.readAsDataURL(file);
+      });
+
+      const newPhoto = {
+        name: file.name,
+        data: data
+      };
+
+      photos.push(newPhoto);
+
+      if (!savePhotos()) {
+        photos.pop();
+        break;
+      }
+    } catch {
+      alert("Не удалось прочитать файл: " + file.name);
+    }
+  }
+
+  renderGallery();
+});
+
+$("#clearGallery").addEventListener("click", () => {
+  if (!photos.length) return;
+
+  if (confirm("Удалить все фотографии из этой галереи?")) {
+    photos = [];
+    savePhotos();
+    renderGallery();
+  }
+});
+
+renderGallery();
+
+/* Дополнительная хроника */
+let events = [];
+
+try {
+  events = JSON.parse(localStorage.getItem("emerlandiaEvents") || "[]");
+  if (!Array.isArray(events)) events = [];
+} catch {
+  events = [];
+}
+
+function renderEvents() {
+  const timeline = $("#customTimeline");
+  timeline.replaceChildren();
+
+  events.forEach((event, index) => {
+    const article = document.createElement("article");
+    article.className = "event";
+
+    const title = document.createElement("h3");
+    title.textContent = event.title;
+
+    const date = document.createElement("p");
+    date.style.color = "var(--gold)";
+    date.textContent = event.date || "Дата не указана";
+
+    const description = document.createElement("p");
+    description.textContent = event.description;
+
+    const remove = document.createElement("button");
+    remove.type = "button";
+    remove.className = "btn";
+    remove.style.marginTop = "10px";
+    remove.textContent = "Удалить запись";
+
+    remove.addEventListener("click", () => {
+      if (!confirm("Удалить эту запись?")) return;
+
+      events.splice(index, 1);
+
+      try {
+        localStorage.setItem("emerlandiaEvents", JSON.stringify(events));
+        renderEvents();
+      } catch {
+        alert("Не удалось обновить сохранённые записи.");
+      }
+    });
+
+    article.append(title, date, description, remove);
+    timeline.appendChild(article);
+  });
+}
+
+$("#eventForm").addEventListener("submit", (event) => {
+  event.preventDefault();
+
+  const newEvent = {
+    title: $("#eventTitle").value.trim(),
+    date: $("#eventDate").value.trim(),
+    description: $("#eventDescription").value.trim()
+  };
+
+  if (!newEvent.title || !newEvent.description) return;
+
+  events.unshift(newEvent);
+
+  try {
+    localStorage.setItem("emerlandiaEvents", JSON.stringify(events));
+  } catch {
+    events.shift();
+    alert("Не удалось сохранить запись в памяти браузера.");
+    return;
+  }
+
+  $("#eventForm").reset();
+  renderEvents();
+});
+
+renderEvents();
+</script>
+
+</body>
+</html>
